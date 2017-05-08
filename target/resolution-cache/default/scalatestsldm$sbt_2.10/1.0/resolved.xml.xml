@@ -4,7 +4,7 @@
 		module="scalatestsldm$sbt_2.10"
 		revision="1.0"
 		status="integration"
-		publication="20170505164241"
+		publication="20170508091540"
 	/>
 	<configurations>
 		<conf name="default" visibility="public"/>

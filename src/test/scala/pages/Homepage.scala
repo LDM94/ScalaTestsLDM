@@ -3,6 +3,7 @@ package pages
 
 import java.time.format.DateTimeFormatter
 import java.time.{LocalDate, Month, Year}
+import scala.util.control.Breaks._
 
 import utils.BaseFeatureSpec
 
@@ -46,7 +47,27 @@ object Homepage extends BaseFeatureSpec {
   }
 
   def selectDate(daysInFuture: Long) = {
-    //takes current date and adds 60 days to it. Then 
+    //takes current date and adds 60 days to it. Then
+    //get local date,
+    val futureDate = LocalDate.now().plusDays(daysInFuture)
+    val futureDayToFind = futureDate.format(DateTimeFormatter.ofPattern("d"))
+    val monthAndYear = futureDate.format(DateTimeFormatter.ofPattern("MMMM YYYY"))
+
+    click on xpath(".//*[@id='outDate']")
+    val leftTableMonth = find(xpath(".//*[@id='ui-datepicker-div']/div[1]/div/div")).get.text
+    val rightTableMonth = find(xpath(".//*[@id='ui-datepicker-div']/div[2]/div/div")).get.text
+
+    System.out.println(leftTableMonth,rightTableMonth)
+
+    if (monthAndYear == leftTableMonth) {
+      click on linkText(futureDayToFind)
+    }
+    else if (monthAndYear != rightTableMonth){
+      click on linkText(futureDayToFind)
+    }
+    else{
+      clickOn(xpath(".//*[@id='ui-datepicker-div']/div[2]/div/a/span"))
+    }
   }
 
   def numberOfAdults() = {

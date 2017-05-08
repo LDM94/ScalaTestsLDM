@@ -19,5 +19,4 @@ object TimetablePage extends BaseFeatureSpec with DriverInitialisation {
     val testing = find(xpath(".//*[@id='journeySummary']/div/div[2]/div[2]/div[1]/div/div[2]")).get.text
     testing should include (Homepage.noOfAdults)
   }
-
 }

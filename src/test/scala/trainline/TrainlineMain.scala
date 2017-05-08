@@ -177,6 +177,9 @@ class TrainlineMain extends BaseFeatureSpec  {
      When("I enter Brighton in the From field and London Bridge in the To field")
      Homepage.defineToAndFrom
 
+     And("I select a Outbound ticket and pick a day that is n from current date")
+     Homepage.selectDate(80)
+
      And("I select a return ticket")
      Homepage.outNextDay
 
